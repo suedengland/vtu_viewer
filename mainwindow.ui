@@ -16,6 +16,33 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QComboBox" name="comboBox">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <item>
+       <property name="text">
+        <string>Points</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Surface</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Surface with Edges</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Wireframe</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
      <widget class="QVTKOpenGLNativeWidget" name="qvtkwidget" native="true"/>
     </item>
     <item>

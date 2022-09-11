@@ -7,8 +7,10 @@
 #include <QVTKOpenGLNativeWidget.h>
 
 #include <vtkActor.h>
+#include <vtkAxesActor.h>
 #include <vtkDataSetMapper.h>
 #include <vtkNamedColors.h>
+#include <vtkOrientationMarkerWidget.h>
 #include <vtkProperty.h>
 #include <vtkRenderer.h>
 #include <vtkRenderWindow.h>
@@ -29,6 +31,7 @@ public:
 
 private slots:
     void slot_open_vtu();
+    void slot_set_representation(QString);
 
 private:
     Ui::MainWindow *ui;
@@ -40,7 +43,10 @@ private:
     vtkSmartPointer<vtkDataSetMapper> mapper;
     vtkSmartPointer<vtkActor> actor;
     vtkSmartPointer<vtkRenderer> renderer;
+    vtkSmartPointer<vtkRenderWindow> renderWindow;
     vtkSmartPointer<vtkNamedColors> colors;
+    vtkSmartPointer<vtkOrientationMarkerWidget> csys;
+    vtkSmartPointer<vtkAxesActor> axes;
 };
 
 #endif // MAINWINDOW_H
