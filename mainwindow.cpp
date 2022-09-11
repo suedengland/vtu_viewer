@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // window title
     setWindowTitle("VTU viewer");
 
+    // initialize lineEdit containing the file name
+    ui->lineEdit->setText(current_vtu_file);
+
     // initialize vtk
     renderer->SetBackground(colors->GetColor3d("Wheat").GetData());
 
@@ -24,10 +27,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     renderWindow->AddRenderer(renderer);
     ui->qvtkwidget->update();
 
-    // initialize lineEdit containing the file name
-    ui->lineEdit->setText(current_vtu_file);
-
-    // slots und signals
+    // define connections between slots and signals
     QObject::connect(ui->actionOpenVTU, SIGNAL(triggered()), this, SLOT(slot_open_vtu()));
     QObject::connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(slot_set_representation(QString)));
 }
@@ -46,6 +46,10 @@ void MainWindow::slot_open_vtu()
     // show file name in lineEdit
     ui->lineEdit->setText(current_vtu_file);
 
+    // remove existing mapper and actor
+    mapper->RemoveAllObservers();
+    renderer->RemoveActor(actor);
+
     // read vtu file
     reader->SetFileName(current_vtu_file.toStdString().c_str());
     reader->Update();
@@ -55,7 +59,6 @@ void MainWindow::slot_open_vtu()
 
     actor->SetMapper(mapper);
     actor->SetOrigin(0.0, 0.0, 0.0);
-    actor->GetProperty()->EdgeVisibilityOn();
     actor->GetProperty()->SetLineWidth(2.0);
     actor->GetProperty()->SetColor(colors->GetColor3d("MistyRose").GetData());
 
@@ -75,8 +78,8 @@ void MainWindow::slot_open_vtu()
     csys->SetEnabled(1);
     csys->InteractiveOff();
 
-    renderWindow->Render();
-    ui->qvtkwidget->update();
+    // apply current representation, render and update view
+    slot_set_representation(ui->comboBox->currentText());
 }
 
 void MainWindow::slot_set_representation(QString representation)
