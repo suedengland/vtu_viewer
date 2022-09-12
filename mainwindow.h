@@ -32,11 +32,16 @@ public:
 private slots:
     void slot_open_vtu();
     void slot_set_representation(QString);
+    void slot_print_information();
 
 private:
     Ui::MainWindow *ui;
 
     QString current_vtu_file = "";
+    double bounds[6];
+    double bounding_box[3];
+    int number_of_points, number_of_cells;
+    int number_of_pointArrays, number_of_cellArrays;
 
     // vtk variables
     vtkSmartPointer<vtkXMLUnstructuredGridReader> reader;

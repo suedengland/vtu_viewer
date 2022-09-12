@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>728</width>
-    <height>491</height>
+    <width>634</width>
+    <height>808</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,23 +46,38 @@
      <widget class="QVTKOpenGLNativeWidget" name="qvtkwidget" native="true"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>.vtu-Datei</string>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpenVTU"/>
+   <addaction name="separator"/>
+   <addaction name="actionInformation"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>728</width>
+     <width>634</width>
      <height>23</height>
     </rect>
    </property>
@@ -74,10 +89,14 @@
    </widget>
    <addaction name="menuDatei"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenVTU">
    <property name="text">
     <string>öffnen</string>
+   </property>
+  </action>
+  <action name="actionInformation">
+   <property name="text">
+    <string>Information</string>
    </property>
   </action>
  </widget>
